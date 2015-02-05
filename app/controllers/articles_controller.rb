@@ -19,8 +19,9 @@ class ArticlesController < ApplicationController
         fields (:title)
         fields (:abstract)
         fields (:content)
+        highlight :content
       end
-    end.results
+    end
   end
 
   # GET /articles/1

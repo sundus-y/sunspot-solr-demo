@@ -1,7 +1,8 @@
 class Article < ActiveRecord::Base
 
   searchable do
-    text :title, :abstract, :content
+    text :title, :abstract
+    text :content, stored: true
   end
 
 end

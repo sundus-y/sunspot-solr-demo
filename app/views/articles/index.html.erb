@@ -19,11 +19,19 @@
   </thead>
 
   <tbody>
-    <% @articles.each do |article| %>
+    <% @articles.each_hit_with_result do |hit,article| %>
       <tr>
         <td><%= article.title %></td>
         <td><%= article.abstract %></td>
-        <td><%= article.content %></td>
+        <td>
+          <% content = article.content %>
+          <% hit.highlights(:content).each do |highlight| %>
+            <% partial_original = highlight.format { |word| word } %>
+            <% partial_formatted = highlight.format { |word| "<span class='highlight'>#{word}</span>" } %>
+            <% content = content.gsub(partial_original,partial_formatted).html_safe %>
+          <% end %>
+          <%= content %>
+        </td>
       </tr>
     <% end %>
   </tbody>

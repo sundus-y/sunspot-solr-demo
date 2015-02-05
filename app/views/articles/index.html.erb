@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag articles_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<h1>Listing Articles</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Abstract</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.abstract %></td>
+        <td><%= article.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

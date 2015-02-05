@@ -19,3 +19,12 @@
 # Mac files
 .idea
 .DS_Store
+
+# Solr files
+/solr/data
+/solr/default
+/solr/development
+/solr/pids
+/solr/test
+/solr/production
+

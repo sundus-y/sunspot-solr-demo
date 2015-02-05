@@ -11,8 +11,16 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    search_key = "%#{params[:search]}%"
-    @articles = Article.where('title like :criteria or abstract like :criteria or content like :criteria',criteria: search_key).to_a
+    # search_key = "%#{params[:search]}%"
+    # @articles = Article.where('title like :criteria or abstract like :criteria or content like :criteria',criteria: search_key).to_a
+
+    @articles = Article.search do
+      fulltext params[:search] do
+        fields (:title)
+        fields (:abstract)
+        fields (:content)
+      end
+    end.results
   end
 
   # GET /articles/1
